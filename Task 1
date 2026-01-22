@@ -1,1 +1,102 @@
+-- Create a Database for the task
+CREATE DATABASE School;
 
+-- Using SQL Database
+USE School_SQL;
+
+-- This table stores Student details
+CREATE TABLE Students (
+stud_id INT PRIMARY KEY,
+stud_name VARCHAR(60),
+dept_id INT
+);
+
+-- This table stores Department details
+CREATE TABLE Departments (
+dept_id INT PRIMARY KEY,
+dept_name VARCHAR(60)
+);
+
+-- This table stores Marks of Students
+CREATE TABLE Marks (
+stud_id INT,
+subject VARCHAR(60),
+marks INT
+);
+
+-- Inserting data into Students table
+INSERT INTO Students VALUES
+(1, 'Rahul', 101),
+(2, 'Priya', 102),
+(3, 'Aman', 103),
+(4, 'Neha', NULL);
+
+-- Inserting data into Departments table
+INSERT INTO Departments VALUES
+(101, 'Computer Science'),
+(102, 'Information Technology'),
+(104, 'Mechanical');
+
+-- Inserting data into Marks table
+INSERT INTO Marks VALUES
+(1, 'SQL', 85),
+(2, 'Python', 90),
+(3, 'Java', 78);
+
+-- Performing INNER JOIN between Students and Departments 
+SELECT
+Students.stud_name,
+Departments.dept_name
+FROM Students
+INNER JOIN Departments
+ON Students.dept_id = Departments.dept_id;
+
+-- Performing LEFT JOIN between Students and Departments 
+SELECT
+Students.stud_name,
+Departments.dept_name
+FROM Students
+LEFT JOIN Departments
+ON Students.dept_id = Departments.dept_id;
+
+-- Performing RIGHT JOIN between Students and Departments 
+SELECT
+Students.stud_name,
+Departments.dept_name
+FROM Students
+RIGHT JOIN Departments
+ON Students.dept_id = Departments.dept_id;
+
+-- Performing FULL OUTER JOIN between Students and Departments 
+SELECT
+Students.stud_name,
+Departments.dept_name
+FROM Students
+FULL OUTER JOIN Departments
+ON Students.dept_id = Departments.dept_id;
+
+-- Performing INNER JOIN using three tables
+SELECT
+Students.stud_name,
+Departments.dept_name,
+Marks.subject,
+Marks.marks
+FROM Students
+INNER JOIN Departments
+ON Students.dept_id = Departments.dept_id
+INNER JOIN Marks
+ON Students.stud_id = Marks.stud_id;
+
+-- Performing LEFT JOIN with three tables
+SELECT
+Students.stud_name,
+Marks.subject,
+Marks.marks
+FROM Students
+LEFT JOIN Marks
+ON Students.stud_id = Marks.stud_id;
+
+-- Displaying Tables
+SELECT * FROM Students;
+SELECT * FROM Departments;
+SELECT * FROM Marks;
